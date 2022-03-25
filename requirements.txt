@@ -1,0 +1,5 @@
+arrow==1.2.2
+Sickle==0.7.0
+requests[socks]==2.27.1
+toml==0.10.2
+voluptuous==0.12.2

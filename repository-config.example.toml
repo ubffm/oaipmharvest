@@ -1,0 +1,125 @@
+#### General configuration
+# State: Required
+# Type: String
+# Info: The url of the oai endpoint
+endpoint_url = "http://oai.base-search.net/oai"
+
+# State: Required
+# Type: List of one or more strings (empty list is not allowed)
+# Info: A list of metadata prefixes. Can not be empty and has to be one of the supported prefixes
+# returned by the ListMetadataFormats OAI verb.
+metadata_prefixes = ["base_dc", "oai_dc"]
+
+# State: Required
+# Type: String (valid path)
+# Info: The harvested data is stored in this Folder
+out_dir = "./out"
+
+# State: Required
+# Type: boolean
+# Info: Use OAI sets or don't. If you dont (false), you can not use the sets option
+use_sets = true
+
+# State: Optional
+# Type: Hash of strings. At least one key is required and only the listed ones are allowed.
+# Info: Specify a proxy for http/https to send oai requests. Very helpful for testing ip restricted endpoints.
+# Additional Python Package required; see https://requests.readthedocs.io/en/latest/user/advanced/#socks
+[proxies]
+http = "socks5://127.0.0.1:9911"
+https = "NONE"
+
+#### Sets
+# Everything that follows, is only required if you use OAI-PMH's set features. Each set has to be introduced
+# with "sets." followed by a set mnemonic. These have to be unique and have to follow pythons rules for names:
+# https://docs.python.org/3/reference/lexical_analysis.html#identifiers
+# They should also be valid in regard to you filesystem, since they can end up as folder names.
+# Some recommendations: Only a-z, A-Z (all positions); 0-9, <underscore>, <hyphen> (not as first character)
+
+# There are different complexity levels for set definitions. First the simple one.
+
+## Basic form
+# State: Required if use_sets = true, forbidden if use_sets = false
+# Type: Hash of strings. All listed keys are required
+# Info: Set definition. This is the Basic form. There are more complex ones, that use different keys/sub-options.
+[sets]
+[sets.ftdtic]
+
+# The set specifier used with the set parameter of the ListRecords OAI-verb. For almost all OAI interfaces, this has to be
+# one of the set specifiers listed via ListSets. For more dynamic set specifiers, refer to the advanced forms described
+# below.
+spec = "collection:ftdtic"
+
+# A label for the set (for the rules the above). It's used as a folder name. Consider using the same value als for the
+# set mnemonic
+label = "ftdtic"
+
+## Advanced forms
+# If you don't want to harvest BASE (or some provider that offers similar advanced features), the following is most
+# likely not relevant to you.
+#
+# Some OAI endpoints (e.g. BASE) allow to specify sets dynamically, for example by allowing to use a query language
+# inside the set specifier (e.g. lucene syntax). The following describes different mechanisms to dynamically construct
+# such queries from parts and making them
+
+[sets.olac]
+# State: Required
+# Type: String following the rules detailed above
+# Info: One top level label is required. Labels on all later levels are optional. If they are present, they stack up
+# and result in nested folder structures.
+# TODO: Example requireyd.
+label = "ftolac"
+
+# State: Optional
+# Type: Hash. Predefined keys (see below). Can not be empty. At least one 'parts' table array is required.
+# Info: This starts the definition of a compound specifier. A compound specifier is made up of several parts that
+# are joined together be the 'connector' option (required). Parts can be literals, or read from files.
+[sets.olac.compound_spec]
+
+# State: Required by parent
+# Type: String. Can deliberatly left empty.
+# Info: Used as a joiner for the parts to yield the final specifier like this:
+# <part_1><connector><part_2>
+# The joining does not introduce any spaces. If you need them, put them in the connector.
+connector = " AND "
+
+# State: Required by parent
+# Type: Array of tables. Excactly one of 'literal' or '*_file' is required.
+# Info: Specify one part. Labels are optional.
+[[sets.olac.compound_spec.parts]]
+
+# State: Optional
+# Type: String
+# Info: Optional label following the rules outlined above.
+label = "collection"
+
+# State: Required, if no *_file is present
+# Type: String
+# Info: A literal string, used as term as is
+literal = "collection:ftolac"
+
+
+[[sets.olac.compound_spec.parts]]
+# State: Required, if neither literal or another *_file is present
+# Type: String. Valid path.
+# Info: Load specifier parts from a file and combine them with literals by cartesian product. (Yes, really …)
+# Has to be a valid path relativ to the main configuration file.
+combine_file = 'base_queries.toml'
+
+### *_file format
+# Part definitions included from a file have to adhere to the following format:
+# TODO: The format should follow the one of the main file instead of having completely different option names.
+
+# State: Required
+# Type: Array of tables. At least one. 'query' is required
+# Info: Defines one part.
+[[queries]]
+
+# State: optional
+# Type: String
+# Info: Optional label following the rules outlined above.
+label = "ddc_manual"
+
+# State: Implied by parent
+# Type: String
+# Info: One query part
+query = "classcode:((4* OR 808) NOT 4?.*)"
