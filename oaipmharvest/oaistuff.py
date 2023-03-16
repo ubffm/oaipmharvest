@@ -234,7 +234,7 @@ class Endpoint:
                 else:
                     if resumption_file.exists():
                         resumption_file.unlink()
-                        continue
+                        # continue
                 cursor = None
                 if resumption_token is not None and hasattr(resumption_token, "cursor"):
                     cursor = resumption_token.cursor
