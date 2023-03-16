@@ -20,7 +20,7 @@ that, it provides several features to dynamically construct set specifiers from 
 After cloning the git repository locally, set up a virtual environment and run
 
 ```
-pip install .
+pip install oaipmharvest
 ```
 
 ## Running
