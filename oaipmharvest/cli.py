@@ -13,7 +13,6 @@ from oaipmharvest.settings import get_args, get_settings
 from oaipmharvest.oaistuff import Endpoint
 
 
-
 def iter_dates(date_from, date_until, day_steps):
     """Iter dates for selective harvesting"""
     target_date_from = date_from
