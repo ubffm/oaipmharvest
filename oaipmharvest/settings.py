@@ -50,6 +50,7 @@ def validate_settings(settings):
             "until": str,
             "day_steps": int,
             "proxies": dict,
+            "accept_encoding": str,
             "sets": dict,
         }
     )

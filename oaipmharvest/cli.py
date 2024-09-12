@@ -43,6 +43,10 @@ def main():
     request_args = {}
     if "proxies" in settings:
         request_args["proxies"] = settings["proxies"]
+    if "accept_encoding" in settings:
+        request_args.setdefault("headers", dict())
+        request_args["headers"]["Accept-Encoding"] = settings["accept_encoding"]
+
     oai_sets = iter_sets(settings)
 
     endpoint = Endpoint(
