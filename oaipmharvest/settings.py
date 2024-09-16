@@ -13,7 +13,7 @@ from voluptuous import Schema, Required, All
 
 DEFAULT_SETTINGS = {
     "metadata_prefixes": ["oai_dc"],
-    "file_template": "{date}__{mdf}__{id:0>12}.xml",
+    "file_template": "{crawl_id}__{date}__{mdf}__{id:0>12}.xml",
     "harvest_delay": 3,
     "resumption_file": "last_resumption_token.txt",
 }
@@ -52,6 +52,7 @@ def validate_settings(settings):
             "proxies": dict,
             "accept_encoding": str,
             "sets": dict,
+            "harvest_delay": int,
         }
     )
     return schema(settings)

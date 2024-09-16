@@ -7,10 +7,11 @@
 """OAI stuff"""
 import datetime
 from time import sleep
+from uuid import uuid4
 from lxml import etree
 from sickle import Sickle, oaiexceptions, iterator, models
 import arrow
-
+import requests
 from oaipmharvest.commons import get_logger
 
 DEFAULT_METADATA_PREFIX = "oai_dc"
@@ -153,6 +154,7 @@ class Endpoint:
         )
         self.identity = self.sickle.Identify()
         self._crawl_date = datetime.date.today()
+        self._crawl_id = uuid4()
 
     @property
     def metadata_formats(self):
@@ -187,7 +189,7 @@ class Endpoint:
         logger.info("Write batch: %s", meta["counter"])
         my_id = meta["cursor"] if meta["cursor"] is not None else meta["counter"]
         file_name = self.settings["file_template"].format(
-            date=str(self._crawl_date), mdf=meta["prefix"], id=my_id
+            crawl_id=self._crawl_id, date=str(self._crawl_date), mdf=meta["prefix"], id=my_id
         )
         with (meta["result_path"] / file_name).open("wb") as fh:
             root = batch.xml.getroottree()
