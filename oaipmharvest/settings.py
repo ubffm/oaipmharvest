@@ -16,6 +16,8 @@ DEFAULT_SETTINGS = {
     "file_template": "{crawl_id}__{date}__{mdf}__{id:0>12}.xml",
     "harvest_delay": 3,
     "resumption_file": "last_resumption_token.txt",
+    "timeout": 60,
+    "max_retries": 3
 }
 
 
@@ -53,6 +55,8 @@ def validate_settings(settings):
             "accept_encoding": str,
             "sets": dict,
             "harvest_delay": int,
+            "max_retries": int,
+            "timeout": float,
         }
     )
     return schema(settings)

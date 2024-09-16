@@ -150,7 +150,7 @@ class Endpoint:
         )
         self.settings = settings
         self.sickle = Sickle(
-            self.endpoint_url, iterator=iterator.OAIResponseIterator, **request_args
+            self.endpoint_url, iterator=iterator.OAIResponseIterator, max_retries=settings["max_retries"], **request_args
         )
         self.identity = self.sickle.Identify()
         self._crawl_date = datetime.date.today()
