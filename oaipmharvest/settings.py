@@ -17,7 +17,7 @@ DEFAULT_SETTINGS = {
     "harvest_delay": 3,
     "resumption_file": "last_resumption_token.txt",
     "timeout": 60,
-    "max_retries": 3
+    "max_retries": 3,
 }
 
 

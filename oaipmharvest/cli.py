@@ -40,7 +40,7 @@ def main():
     )
     if not settings["out_dir"].exists():
         settings["out_dir"].mkdir()
-    request_args = {"timeout":settings["timeout"]}
+    request_args = {"timeout": settings["timeout"]}
     if "proxies" in settings:
         request_args["proxies"] = settings["proxies"]
     if "accept_encoding" in settings:

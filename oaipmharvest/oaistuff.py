@@ -150,7 +150,10 @@ class Endpoint:
         )
         self.settings = settings
         self.sickle = Sickle(
-            self.endpoint_url, iterator=iterator.OAIResponseIterator, max_retries=settings["max_retries"], **request_args
+            self.endpoint_url,
+            iterator=iterator.OAIResponseIterator,
+            max_retries=settings["max_retries"],
+            **request_args
         )
         self.identity = self.sickle.Identify()
         self._crawl_date = datetime.date.today()
@@ -189,7 +192,10 @@ class Endpoint:
         logger.info("Write batch: %s", meta["counter"])
         my_id = meta["cursor"] if meta["cursor"] is not None else meta["counter"]
         file_name = self.settings["file_template"].format(
-            crawl_id=self._crawl_id, date=str(self._crawl_date), mdf=meta["prefix"], id=my_id
+            crawl_id=self._crawl_id,
+            date=str(self._crawl_date),
+            mdf=meta["prefix"],
+            id=my_id,
         )
         with (meta["result_path"] / file_name).open("wb") as fh:
             root = batch.xml.getroottree()
