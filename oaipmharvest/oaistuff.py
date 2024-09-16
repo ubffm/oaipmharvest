@@ -11,7 +11,6 @@ from uuid import uuid4
 from lxml import etree
 from sickle import Sickle, oaiexceptions, iterator, models
 import arrow
-import requests
 from oaipmharvest.commons import get_logger
 
 DEFAULT_METADATA_PREFIX = "oai_dc"
@@ -46,8 +45,7 @@ def iter_records(
                     " (or is otherwise invalid). Please remove manually."
                 )
                 raise SystemExit
-            else:
-                raise e
+            raise e
         except oaiexceptions.NoRecordsMatch:
             if logger is not None:
                 logger.warn("No records.")

@@ -36,7 +36,7 @@ def main():
     # TODO: Refactor!
     logger = get_logger(
         settings["out_dir"]
-        / "oai_{date}.log".format(date=str(datetime.datetime.now()).replace(" ", "_"))
+        / 'oai_{str(datetime.datetime.now()).replace(" ", "_")}.log'
     )
     if not settings["out_dir"].exists():
         settings["out_dir"].mkdir()
@@ -44,7 +44,7 @@ def main():
     if "proxies" in settings:
         request_args["proxies"] = settings["proxies"]
     if "accept_encoding" in settings:
-        request_args.setdefault("headers", dict())
+        request_args.setdefault("headers", {})
         request_args["headers"]["Accept-Encoding"] = settings["accept_encoding"]
 
     oai_sets = iter_sets(settings)
