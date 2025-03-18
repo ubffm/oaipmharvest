@@ -36,7 +36,7 @@ def main():
     # TODO: Refactor!
     logger = get_logger(
         settings["out_dir"]
-        / 'oai_{str(datetime.datetime.now()).replace(" ", "_")}.log'
+        / f'oai_{str(datetime.datetime.now()).replace(" ", "_")}.log'
     )
     if not settings["out_dir"].exists():
         settings["out_dir"].mkdir()
