@@ -6,6 +6,7 @@
 
 """Settings and configurations."""
 import argparse
+import os
 import pathlib
 
 import toml
@@ -20,6 +21,8 @@ DEFAULT_SETTINGS = {
     "max_retries": 3,
 }
 
+class SettingsError(Exception):
+    pass
 
 def get_args():
     """Cli argument handling."""
@@ -57,6 +60,7 @@ def validate_settings(settings):
             "harvest_delay": int,
             "max_retries": int,
             "timeout": float,
+            "http_cookie_env_var": str,
         }
     )
     return schema(settings)
@@ -80,6 +84,13 @@ def get_settings(file):
     # config in files take precedence
     settings.update(data)
     settings["conf_base"] = file.parent.absolute()
+    if "http_cookie_env_var" in settings:
+        cookie_name = settings['http_cookie_env_var']
+        try:
+            cookie_value = os.environ[cookie_name]
+        except KeyError:
+            raise SettingsError('Can not find environment variable for cookie')
+        settings['cookies'] = {cookie_name: cookie_value}
     return settings
 
 

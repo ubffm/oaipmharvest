@@ -38,6 +38,7 @@ def main():
         settings["out_dir"]
         / f'oai_{str(datetime.datetime.now()).replace(" ", "_")}.log'
     )
+
     if not settings["out_dir"].exists():
         settings["out_dir"].mkdir()
     request_args = {"timeout": settings["timeout"]}
@@ -46,6 +47,8 @@ def main():
     if "accept_encoding" in settings:
         request_args.setdefault("headers", {})
         request_args["headers"]["Accept-Encoding"] = settings["accept_encoding"]
+    if 'cookies' in settings:
+        request_args["cookies"] = settings['cookies']
 
     oai_sets = iter_sets(settings)
 
