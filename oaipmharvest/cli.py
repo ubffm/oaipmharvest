@@ -47,8 +47,8 @@ def main():
     if "accept_encoding" in settings:
         request_args.setdefault("headers", {})
         request_args["headers"]["Accept-Encoding"] = settings["accept_encoding"]
-    if 'cookies' in settings:
-        request_args["cookies"] = settings['cookies']
+    if "cookies" in settings:
+        request_args["cookies"] = settings["cookies"]
 
     oai_sets = iter_sets(settings)
 
@@ -57,7 +57,7 @@ def main():
         metadata_prefixes=settings["metadata_prefixes"],
         logger=logger,
         settings=settings,
-        **request_args
+        **request_args,
     )
 
     endpoint.greet()
