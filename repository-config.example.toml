@@ -21,6 +21,55 @@ out_dir = "./out"
 use_sets = true
 
 # State: Optional
+# Type: String (Valid OAI date)
+# Info: Set the OAI "from" parameter for selective harvesting based on date. This has to be a valid ISO8601 UTC date.
+# C.f.: https://www.openarchives.org/OAI/openarchivesprotocol.html#Datestamp
+from=1900-01-01
+
+# State: Optional
+# Type: String (Valid OAI date)
+# Info: Set the OAI "until" parameter for selective harvesting based on date. This has to be a valid ISO8601 UTC date.
+# C.f.: https://www.openarchives.org/OAI/openarchivesprotocol.html#Datestamp
+until=1900-01-01
+
+# State: Optional
+# Type: Integer
+# Info: This parameter can optionally be used in conjunction with "from" and "until" to harvest not in one go but in
+# time slices (specified in days). Instead of harvesting the whole range defined by "from" and "until" in one pass,
+# this parameter divides the defined range into slices of the size it's value and harvests them in separated passed one
+# by one. This feature would ideally not be needed, but is provided to deal with OAI-PMH endpoints that impose restrictions
+# on the result set size; if the result set size of the whole time span is too large, this parameter can be used to chop
+# it into smaller chunks, hopefully making it possible to harvest.
+day_steps=1
+
+# State: Optional
+# Type: String
+# Info: Set the HTTP Accept-Encoding header. This can for example be used to enable gzip compression, supported/required
+# by some OAI-PMH endpoints.
+accept_encoding = "gzip" 
+
+# State: Optional
+# Type: Integer (seconds)
+# Info: Defines how many seconds to wait after each harvested batch before the next one is retrieved.
+harvest_delay = 3 
+
+# State: Optional
+# Type: Integer (Seconds)
+# Info: Set the number of retries, if something with the HTTP requests doesn't work out.
+max_retries = 3 
+
+# State: Optional
+# Type: Float (Seconds)
+# Info: Set the request timeout.
+timeout = 60.0
+
+# State: Optional
+# Type: String
+# Info: Specify the name of a environment variable. The name and value of the environment
+# variable will be used submitted as cookies with each request.
+http_cookie_env_var=MY_VAR
+
+# State: Optional
 # Type: Hash of strings. At least one key is required and only the listed ones are allowed.
 # Info: Specify a proxy for http/https to send oai requests. Very helpful for testing ip restricted endpoints.
 # Additional Python Package required; see https://requests.readthedocs.io/en/latest/user/advanced/#socks
