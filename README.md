@@ -3,8 +3,8 @@
 ## Description
 oaipmharvest is a harvester for [OAI-PMH](https://www.openarchives.org/OAI/openarchivesprotocol.html) written in python
 and based on [sickle](https://sickle.readthedocs.io) (for now). It's special focus lies on support for advanced
-non-standard use cases. If you just need a the standard feature set, you might be better off with something more mature
-and better tested.
+non-standard use cases and supporting endpoints that behave slightly out of the ordinary. If you just need the standard
+feature set, you might be better off with something more mature and better tested.
 
 The oaipmharvester will connect to a given OAI-endpoint and store its responses in a given output folder. It enables you
 to make incremental requests from the given OAI-endpoint or even restrict the result set by a given date. In addition to
@@ -15,6 +15,7 @@ that, it provides several features to dynamically construct set specifiers from 
 ## Features
 * Configuration via TOML
 * Advanced configuration support for dynamic sets (for e.g. those supported by [BASE](http://oai.base-search.net/))
+
 
 ## Installation
 After cloning the git repository locally, set up a virtual environment and run

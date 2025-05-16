@@ -13,7 +13,7 @@ metadata_prefixes = ["base_dc", "oai_dc"]
 # State: Required
 # Type: String (valid path)
 # Info: The harvested data is stored in this Folder
-out_dir = "./out"
+out_dir = "./oai-results"
 
 # State: Required
 # Type: boolean
@@ -30,7 +30,7 @@ from=1900-01-01
 # Type: String (Valid OAI date)
 # Info: Set the OAI "until" parameter for selective harvesting based on date. This has to be a valid ISO8601 UTC date.
 # C.f.: https://www.openarchives.org/OAI/openarchivesprotocol.html#Datestamp
-until=1900-01-01
+until=1900-12-31
 
 # State: Optional
 # Type: Integer
@@ -67,14 +67,14 @@ timeout = 60.0
 # Type: String
 # Info: Specify the name of a environment variable. The name and value of the environment
 # variable will be used submitted as cookies with each request.
-http_cookie_env_var=MY_VAR
+http_cookie_env_var = "MY_ENV_VAR"
 
 # State: Optional
 # Type: Hash of strings. At least one key is required and only the listed ones are allowed.
 # Info: Specify a proxy for http/https to send oai requests. Very helpful for testing ip restricted endpoints.
 # Additional Python Package required; see https://requests.readthedocs.io/en/latest/user/advanced/#socks
 [proxies]
-http = "socks5://127.0.0.1:9911"
+http = "socks5://127.0.0.1:8080"
 https = "NONE"
 
 #### Sets
