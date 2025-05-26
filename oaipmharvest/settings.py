@@ -8,8 +8,14 @@
 import argparse
 import os
 import pathlib
+from hashlib import blake2b
 
-import toml
+try:
+    import tomllib
+except ImportError:
+    import tomli as tomllib
+
+
 from voluptuous import Schema, Required, All
 
 DEFAULT_SETTINGS = {
@@ -80,7 +86,8 @@ def get_settings(file):
     settings = {}
     # make sure it's a copy, not a clone
     settings.update(DEFAULT_SETTINGS)
-    data = toml.load(file)
+    with file.open("rb") as fh:
+        data = tomllib.load(fh)
     _ = validate_settings(data)
     data["out_dir"] = pathlib.Path(data["out_dir"])
     # config in files take precedence
@@ -98,6 +105,7 @@ def get_settings(file):
 
 def get_spec_file(file):
     """Load the specification"""
-    data = toml.load(file)
+    with file.open("rb") as fh:
+        data = tomllib.load(fh)
     _ = validate_spec(data)
     return data["queries"]
