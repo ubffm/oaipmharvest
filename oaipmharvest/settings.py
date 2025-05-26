@@ -49,6 +49,13 @@ def get_args():
     return parser.parse_args()
 
 
+def get_file_hash(file):
+    with file.open("rb") as fh:
+        content = fh.read()
+    hash_value = blake2b(content)
+    return hash_value.hexdigest()
+
+
 def validate_settings(settings):
     """Validate the settings file"""
     schema = Schema(
@@ -93,6 +100,7 @@ def get_settings(file):
     # config in files take precedence
     settings.update(data)
     settings["conf_base"] = file.parent.absolute()
+    settings["config_hash"] = get_file_hash(file)
     if "http_cookie_env_var" in settings:
         cookie_name = settings["http_cookie_env_var"]
         try:
