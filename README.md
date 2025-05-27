@@ -1,12 +1,12 @@
 # oaipmharvest
 
 ## Description
-oaipmharvest is a harvester for [OAI-PMH](https://www.openarchives.org/OAI/openarchivesprotocol.html) written in python
+_oaipmharvest_ is a harvester for [OAI-PMH](https://www.openarchives.org/OAI/openarchivesprotocol.html) written in python
 and based on [sickle](https://sickle.readthedocs.io) (for now). It's special focus lies on support for advanced
 non-standard use cases and supporting endpoints that behave slightly out of the ordinary. If you just need the standard
 feature set, you might be better off with something more mature and better tested.
 
-The oaipmharvester will connect to a given OAI-endpoint and store its responses in a given output folder. It enables you
+_oaipmharvest_ will connect to a given OAI-endpoint and store its responses in a given output folder. It enables you
 to make incremental requests from the given OAI-endpoint or even restrict the result set by a given date. In addition to
 that, it provides several features to dynamically construct set specifiers from smaller parts.
 
@@ -18,7 +18,13 @@ that, it provides several features to dynamically construct set specifiers from 
 
 
 ## Installation
-After cloning the git repository locally, set up a virtual environment and run
+If you want to use `_oaipmharvest_ as a standalone application, installation via [pipx](https://github.com/pypa/pipx) is recommendaed.
+
+```
+pipx install oaipmharvest
+```
+
+Installation via other package managers is of course possible, too. This is esp. recommended, if `oaipmharvest` should be used as a library.
 
 ```
 pip install oaipmharvest
@@ -27,7 +33,7 @@ pip install oaipmharvest
 ## Running
 
 For running the application, you can call after the installation the CLI command `oaipm_harvest`, which also provides a help function
-by calling `oaipm_harvester -h`.
+by calling `oaipm_harvest -h`.
 
 ```
 usage: oaipm_harvest [-h] [--from FROM] [--until UNTIL] file
@@ -42,7 +48,7 @@ optional arguments:
                         Harvest only items that where published before the specified date
 ```
 
-To harvest a specific OAI, you have to provide a conf-file. An example conf-file for the
+To harvest a specific OAI endpoint, you have to provide a conf-file. An example conf-file for the
 most basic use case could be `conf/my-journal.conf` and would contain, for example:
 
 ```
