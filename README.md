@@ -77,5 +77,5 @@ under the Mozilla Public License 2.0.
 
 ## Acknowledgement  
 
-This is a project created and maintained by the [Specialised Information Service for Linguistics](https://www.linguistik.de/en/)
+This is a project created by the [Specialised Information Service for Linguistics](https://www.linguistik.de/en/)
 at the [University Library J. C. Senckenberg](https://www.ub.uni-frankfurt.de/) and funded by the German Research Foundation (DFG; project identifier [326024153](https://gepris.dfg.de/gepris/projekt/326024153?language=en)).
