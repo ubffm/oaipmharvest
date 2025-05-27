@@ -1,6 +1,7 @@
 # oaipmharvest
 
 ## Description
+
 _oaipmharvest_ is a harvester for [OAI-PMH](https://www.openarchives.org/OAI/openarchivesprotocol.html) written in python
 and based on [sickle](https://sickle.readthedocs.io) (for now). It's special focus lies on support for advanced
 non-standard use cases and supporting endpoints that behave slightly out of the ordinary. If you just need the standard
@@ -13,11 +14,12 @@ that, it provides several features to dynamically construct set specifiers from 
 **This is an alpha release. Use with caution.**
 
 ## Features
+
 * Configuration via TOML
 * Advanced configuration support for dynamic sets (for e.g. those supported by [BASE](http://oai.base-search.net/))
 
-
 ## Installation
+
 If you want to use `_oaipmharvest_ as a standalone application, installation via [pipx](https://github.com/pypa/pipx) is recommendaed.
 
 ```
@@ -66,7 +68,7 @@ where
 
 **out\_dir** is the directory, where all the downloaded data will be stored. If the given folder(s) do not exists, they will be created.
 
-**use\_sets** false 
+**use\_sets** false
 
 ## Licence
 
@@ -74,6 +76,6 @@ All parts of this code are copyrighted by the University Library JCS, Frankfurt 
 under the Mozilla Public License 2.0.
 
 ## Acknowledgement  
+
 This is a project created and maintained by the [Specialised Information Service for Linguistics](https://www.linguistik.de/en/)
 at the [University Library J. C. Senckenberg](https://www.ub.uni-frankfurt.de/) and funded by the German Research Foundation (DFG; project identifier [326024153](https://gepris.dfg.de/gepris/projekt/326024153?language=en)).
-
