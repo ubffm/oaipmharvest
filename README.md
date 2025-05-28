@@ -7,8 +7,8 @@ and based on [sickle](https://sickle.readthedocs.io) (for now). It's special foc
 non-standard use cases and supporting endpoints that behave slightly out of the ordinary. If you just need the standard
 feature set, you might be better off with something more mature and better tested.
 
-_oaipmharvest_ will connect to a given OAI-endpoint and store its responses in a given output folder. It enables you
-to make incremental requests from the given OAI-endpoint or even restrict the result set by a given date. In addition to
+_oaipmharvest_ will connect to a given OAI endpoint and, by default, store its responses in an output folder. It enables you
+to make incremental requests from the given OAI-endpoint or restrict the result set by a given date. In addition to
 that, it provides several features to dynamically construct set specifiers from smaller parts.
 
 **This is an alpha release. Use with caution.**
@@ -20,13 +20,13 @@ that, it provides several features to dynamically construct set specifiers from 
 
 ## Installation
 
-If you want to use `_oaipmharvest_ as a standalone application, installation via [pipx](https://github.com/pypa/pipx) is recommendaed.
+If you want to use _oaipmharvest_ as a standalone application, installation via [pipx](https://github.com/pypa/pipx) is recommended.
 
 ```
 pipx install oaipmharvest
 ```
 
-Installation via other package managers is of course possible, too. This is esp. recommended, if `oaipmharvest` should be used as a library.
+Installation via other package managers is of course possible, too. This is esp. recommended, if _oaipmharvest_ should be used as a library.
 
 ```
 pip install oaipmharvest
@@ -34,7 +34,7 @@ pip install oaipmharvest
 
 ## Running
 
-For running the application, you can call after the installation the CLI command `oaipm_harvest`, which also provides a help function
+In order to run the application after installation, you can call the CLI command `oaipm_harvest`, which also provides a help function
 by calling `oaipm_harvest -h`.
 
 ```
@@ -50,7 +50,7 @@ optional arguments:
                         Harvest only items that where published before the specified date
 ```
 
-To harvest a specific OAI endpoint, you have to provide a conf-file. An example conf-file for the
+To harvest a specific OAI-PMH endpoint, you have to provide a TOML config file. An example config file for the
 most basic use case could be `conf/my-journal.conf` and would contain, for example:
 
 ```
@@ -77,5 +77,5 @@ under the Mozilla Public License 2.0.
 
 ## Acknowledgement  
 
-This is a project created by the [Specialised Information Service for Linguistics](https://www.linguistik.de/en/)
+This is a project originially created by the [Specialised Information Service for Linguistics](https://www.linguistik.de/en/)
 at the [University Library J. C. Senckenberg](https://www.ub.uni-frankfurt.de/) and funded by the German Research Foundation (DFG; project identifier [326024153](https://gepris.dfg.de/gepris/projekt/326024153?language=en)).
