@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61.2"]
+requires = ["setuptools>=80.0.8"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -7,15 +7,14 @@ name = "oaipmharvest"
 version = "0.0.7"
 description = "Highly configurable oai-harvester based on sickle."
 authors = [{name = "UB Frankfurt a. M.", email = "ublabs@ub.uni-frankfurt.de"}]
-license = {text = "MPL 2.0"}
+license = "MPL-2.0"
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Environment :: Console",
-    "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
     "Operating System :: POSIX :: Linux",
 ]
 urls = {Homepage = "https://github.com/ubffm/oaipmharvest"}
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
     "arrow==1.4.0",
     "requests[socks]==2.32.5",
