@@ -17,7 +17,7 @@ urls = {Homepage = "https://github.com/ubffm/oaipmharvest"}
 requires-python = ">=3.10"
 dependencies = [
     "arrow==1.4.0",
-    "requests[socks]==2.32.5",
+    "requests[socks]==2.33.1",
     "Sickle==0.7.0",
     "voluptuous==0.15.2",
     "tomli==2.2.1; python_version < \"3.11\"",

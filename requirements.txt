@@ -1,5 +1,5 @@
 arrow==1.4.0
 Sickle==0.7.0
-requests[socks]==2.32.5
+requests[socks]==2.33.1
 voluptuous==0.15.2
 tomli==2.2.1; python_version<"3.11"
